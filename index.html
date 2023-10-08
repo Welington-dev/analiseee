@@ -1,17 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=Mesa Roleta, initial-scale=1.0">
-    <title>Mesa Roleta</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analise Roulette</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="color-picker-container">
-     <label for="colorPicker">Selecione a cor:</label>
-     <input type="color" id="colorPicker" value="	#00FF00">
+   <header class="app-header">
+     <div class="header-image"></div>
+     <h1 class="logo">Analise Roulette</h1>
+     <h2 class="title">Estrategia Ao Seu Favor</h2>
+   </header>
+
+    <div class="percentage-bars">
+      <div class="percentage-bar blue" data-duzia="0" data-coluna="1" data-cliques="0">D1 <hr>0%</div>
+      <div class="percentage-bar green" data-duzia="1" data-coluna="2" data-cliques="0">D2 <hr>0%</div>
+      <div class="percentage-bar orange" data-duzia="2" data-coluna="3" data-cliques="0">D3 <hr>0%</div>
+      <div class="percentage-bar purple" data-duzia="0" data-coluna="1" data-cliques="0">C1 <hr>0%</div>
+      <div class="percentage-bar red" data-duzia="1" data-coluna="2" data-cliques="0">C2 <hr>0%</div>
+      <div class="percentage-bar yellow" data-duzia="2" data-coluna="3" data-cliques="0">C3<hr>0%</div>
     </div>
-    <div class="roulette-table">
+
+    <!-- Conteúdo da segunda tela aqui -->
+
+    <div class="charts-container">
+        <canvas id="dozensChart" class="chart"></canvas>
+        <canvas id="columnsChart" class="chart"></canvas>
+    </div>
+
+
+    
+
+    
+
+    <!-- MESA DE ANALISE --
+ 
+
+    <-- Conteudo da mesa ########################################-->
+      <div class="roulette-table">
         <div class="douzine-row">
             <!-- Adicionar o número zero -->
             <div class="number zero">0</div>
@@ -19,24 +47,24 @@
           <div class="douzine">
             <!-- Linha da primeira dúzia -->
             <div class="row">
-              <div class="number red">3</div>
-              <div class="number black">6</div>
-              <div class="number red">9</div>
-              <div class="number black">12</div>
+              <div class="number red" data-numero="3">3</div>
+              <div class="number black" data-numero="6">6</div>
+              <div class="number red" data-numero="9">9</div>
+              <div class="number black" data-numero="12">12</div>
             </div>
             <!-- Linha da segunda dúzia -->
             <div class="row">
-              <div class="number black">2</div>
-              <div class="number red">5</div>
-              <div class="number black">8</div>
-              <div class="number red">11</div>
+              <div class="number black" data-numero="2">2</div>
+              <div class="number red" data-numero="5">5</div>
+              <div class="number black" data-numero="8">8</div>
+              <div class="number red" data-numero="11">11</div>
             </div>
             <!-- Linha da terceira dúzia -->
             <div class="row">
-              <div class="number red">1</div>
-              <div class="number black">4</div>
-              <div class="number red">7</div>
-              <div class="number black">10</div>
+              <div class="number red" data-numero="1">1</div>
+              <div class="number black" data-numero="4">4</div>
+              <div class="number red" data-numero="7">7</div>
+              <div class="number black" data-numero="10">10</div>
             </div>
           </div>
     
@@ -44,53 +72,61 @@
           <div class="douzine">
             <!-- Linha da primeira dúzia -->
             <div class="row">
-              <div class="number red">15</div>
-              <div class="number black">18</div>
-              <div class="number red">21</div>
-              <div class="number black">24</div>
+              <div class="number red" data-numero="15">15</div>
+              <div class="number black" data-numero="18">18</div>
+              <div class="number red" data-numero="21">21</div>
+              <div class="number black" data-numero="24">24</div>
             </div>
             <!-- Linha da segunda dúzia -->
             <div class="row">
-              <div class="number black">14</div>
-              <div class="number red">17</div>
-              <div class="number black">20</div>
-              <div class="number red">23</div>
+              <div class="number black" data-numero="14">14</div>
+              <div class="number red" data-numero="17">17</div>
+              <div class="number black" data-numero="20">20</div>
+              <div class="number red" data-numero="23">23</div>
             </div>
             <!-- Linha da terceira dúzia -->
             <div class="row">
-              <div class="number red">13</div>
-              <div class="number black">16</div>
-              <div class="number red">19</div>
-              <div class="number black">22</div>
+              <div class="number red" data-numero="13">13</div>
+              <div class="number black" data-numero="16">16</div>
+              <div class="number red" data-numero="19">19</div>
+              <div class="number black" data-numero="22">22</div>
             </div>
           </div>
              <!-- Terceira dúzia -->
-      <div class="douzine">
+       <div class="douzine">
         <!-- Linha da primeira dúzia -->
         <div class="row">
-          <div class="number black">27</div>
-          <div class="number red">30</div>
-          <div class="number black">33</div>
-          <div class="number red">36</div>
+          <div class="number black" data-numero="27">27</div>
+          <div class="number red" data-numero="30">30</div>
+          <div class="number black" data-numero="33">33</div>
+          <div class="number red" data-numero="36">36</div>
         </div>
         <!-- Linha da segunda dúzia -->
         <div class="row">
-          <div class="number red">26</div>
-          <div class="number black">29</div>
-          <div class="number red">32</div>
-          <div class="number black">35</div>
+          <div class="number red" data-numero="26">26</div>
+          <div class="number black" data-numero="29">29</div>
+          <div class="number red" data-numero="32">32</div>
+          <div class="number black" data-numero="35">35</div>
         </div>
         <!-- Linha da terceira dúzia -->
         <div class="row">
-          <div class="number black">25</div>
-          <div class="number red">28</div>
-          <div class="number black">31</div>
-          <div class="number red">34</div>
+          <div class="number black" data-numero="25">25</div>
+          <div class="number red" data-numero="28">28</div>
+          <div class="number black" data-numero="31">31</div>
+          <div class="number red" data-numero="34">34</div>
         </div>
-        </div>
+         
       </div>
-      <script src="script.js"></script>
+      
+
+      
+      
+    <div class="selected-numbers-container">
+      <div class="number zero" style="display: none;">0</div>
+    </div>
+
+  
+    <script src="graphics.js"></script>
     
 </body>
 </html>
-
