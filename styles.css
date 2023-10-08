@@ -1,37 +1,152 @@
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+/* Reset de estilos básicos */
+body, html {
     margin: 0;
-    background-color: #f0f0f0;
-  }
-  
-  .roulette-table {
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1a1919;
+    font-size: 16px; /* Define o tamanho da fonte raiz para unidades rem ou em */
+}
+
+/* Estilos para o cabeçalho responsivo com layout em grid */
+.app-header {
+    position: relative;
+    color: rgb(247, 247, 247);
+    display: flex; /* Adiciona um display flex para alinhar os elementos horizontalmente */
+    justify-content: space-between; /* Distribui os elementos horizontalmente com espaço entre eles */
+    align-items: center; /* Centraliza verticalmente os elementos no cabeçalho */
+    padding: 2px; /* Adicione margem interna para espaçamento interno consistente */
+}
+
+header {
+    background-color: #28a745;
+}
+
+.logo, .title {
+    flex: 1; /* Faz com que ambos os elementos ocupem o espaço disponível igualmente */
+    font-weight: bold;
+    text-shadow: 0 0 20px black;
+}
+
+.logo {
+    text-align: left; /* Alinha o título à esquerda */
+    margin-left: 20px; /* Adiciona uma margem à esquerda para separar do canto esquerdo */
+}
+
+.title {
+    text-align: right; /* Alinha o subtitulo à direita */
+    margin-right: 10px; /* Adiciona uma margem à direita para separar do canto direito */
+}
+
+.content {
+    margin-left: 20px; /* Margem à esquerda */
+    margin-right: 20px; /* Margem à direita */
+}
+
+/* Estilos para as barras de porcentagens */
+.percentage-bars {
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* Seis colunas iguais */
     background-color: #444;
-    border: 1px solid #333;
-    padding: 20px;
+    padding: 10px;
+    gap: 10px;
+}
+
+.percentage-bar {
+    background-color: #007bff; /* Cor da barra de porcentagem */
+    color: #ffffff; /* Cor do texto da porcentagem */
+    text-align: center;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 15px;
     border-radius: 10px;
+    width: 50%;
+}
+
+/* Estilo para dispositivos móveis (largura máxima de 768px, mas você pode ajustar isso) */
+@media (max-width: 768px) {
+    .percentage-bar {
+        /* Personalize o estilo para telas menores aqui */
+        padding: 5px; /* Reduza o preenchimento para economizar espaço vertical */
+        font-size: 16px; /* Reduza o tamanho da fonte */
+    }
+}
+
+/* Cores das barras de porcentagem */
+.blue { background-color:#76c7fc; color: black; }
+.green { background-color: #65FA61; color: black; }
+.orange { background-color:#FAAA49; color: black; }
+.purple { background-color:#ff00ff; color: black; }
+.red { background-color: #f21e1e; color: black; }
+.yellow { background-color: #ffff00; color: black; }
+
+.charts-container {
+    position: relative; /* Adicione esta regra */
+    z-index: 1; /* Adicione esta regra */
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    margin: 20px auto; /* Centraliza o contêiner na tela com margens automáticas */
+    padding: 15px; /* Adiciona algum espaço entre a borda e os gráficos */
+    box-sizing: border-box; /* Certifique-se de que as margens e o preenchimento não afetem a largura total */
+}
+
+.chart {
+    max-width: 48%; /* Largura máxima igual a 48% do contêiner pai */
+    width: 100%; /* Largura igual a 100% do contêiner pai */
+    height: auto;
+}
+
+/* Estilos para telas médias (768px >= largura > 480px) */
+@media (max-width: 900px) {
+    .chart {
+       max-width: 50%; 
+       height: 50vh;
+    }
+}
+
+/* Estilos para telas pequenas (largura <= 480px) */
+@media (max-width: 480px) {
+    .chart {
+        max-width: 100%; /* Ajuste a largura para 100% para ocupar toda a largura do contêiner */
+        height: 50vh; /* Defina uma altura menor para telas pequenas */
+    }
+}
+
+/* MESA PARA ANALISE */
+.roulette-table {
+    height: auto;
+    left: 0;
+    right: 0;
+    max-height: 50vh;
+    overflow-y: auto;
+    background-color: #444;
+    padding: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  }
-  
-  .douzine-row {
-    display: flex; /* Exibir dúzias lado a lado */
-  }
-  
-  .douzine {
+    border: 3px solid #0f0f0f;
+    border-radius: 10px;
+    width: auto;
+    z-index: 0;
+}
+
+.douzine-row {
+    display: flex;
+    gap: 10px;
+}
+
+.douzine {
     display: flex;
     flex-direction: column;
     margin-right: 20px;
-  }
-  
-  .row {
+}
+
+.row {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-  }
-  
-  .number {
+}
+
+.number {
     width: 40px;
     height: 40px;
     border: 1px solid #888;
@@ -40,51 +155,155 @@ body {
     align-items: center;
     font-size: 20px;
     border-radius: 50%;
-  }
-  
-  .number.black {
+    font-weight: bold;
+}
+
+.number.black {
     background-color: #222;
     color: white;
-  }
-  
-  .number.red {
+}
+
+.number.red {
     background-color: #FF4136;
     color: white;
-  }
-  
+}
 
+.number:hover {
+    transform: scale(1.2);
+    transition: transform 0.3s;
+}
 
 .number.zero {
     width: 40px;
-    height: 150px; /* Altura maior para a faixa verde */
+    height: 150px;
     border: 1px solid #888;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 20px;
     color: white;
-    border-radius: 5px; /* Borda arredondada */
-    background-color: #0A8040; /* Cor verde */
-    margin-right: 20px; /* Espaçamento à direita */
-  }
-  
-  
+    border-radius: 5px;
+    background-color: #0A8040;
+    margin-right: 20px;
+}
 
-.color-picker-container {
-    margin-bottom: 50px;
-    margin-right: 20px ;
-    align-items: center;
-   
-  }
-  
+/* Adicione media queries para tornar responsivo */
+@media (max-width: 768px) {
+    .douzine {
+        margin-right: 10px;
+    }
 
-  
-  .color-picker-container label {
-    color: #f5160e;
+    .number {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+
+    .number.zero {
+        width: 30px;
+        height: 100px;
+        font-size: 16px;
+        margin-right: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .douzine {
+        margin-right: 5px;
+    }
+
+    .number {
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+    }
+
+    .number.zero {
+        width: 20px;
+        height: 80px;
+        font-size: 12px;
+        margin-right: 5px;
+    }
+}
+
+.selected-numbers-container {
+    float: right;
+    width: 90%;
     margin-right: 10px;
-    font-weight: bold;
-    font-size: 20px;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    max-height: 130px;
+}
 
-  }
-  
+
+
+.selected-numbers-container span.number {
+    margin-right: 2px;
+    margin-bottom: 2px;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgb(0, 0, 0);
+    display: flex;
+    flex-direction: row;
+    font-size: 25px;
+}
+
+/* Estilos para números nas dúzias e colunas */
+.number.duzia-1.coluna-1 {
+    background-color:#76c7fc;
+    color:#ff00ff;
+}
+
+.number.duzia-1.coluna-2{
+    background-color:#76c7fc;
+    color:#ff0000;
+}
+
+.number.duzia-1.coluna-3{
+    background-color:#76c7fc;
+    color:#ffff00;
+}
+
+.number.duzia-2.coluna-2 {
+    background-color:#65fa61;
+    color:#ff0000;
+    border: 2px;
+}
+
+.number.duzia-2.coluna-1{
+    background-color:#65FA61;
+    color:#ff00ff;
+}
+
+.number.duzia-2.coluna-3{
+    background-color:#65FA61;
+    color:#ffff00;
+}
+
+.number.duzia-3.coluna-1{
+    background-color:#FAAA49;
+    color:#ff00ff;
+}
+
+.number.duzia-3.coluna-2{
+    background-color: #FAAA49;
+    color:#ff0000;
+}
+
+.number.duzia-3.coluna-3{
+    background-color:#FAAA49;
+    color:#ffff00;
+}
+
+
  
